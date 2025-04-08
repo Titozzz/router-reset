@@ -13,8 +13,12 @@ export default () => {
         onPress={() => {
           // Ideally we would want to use
           // router.reset('/first_name')
+          //
           // To avoid potential conflicts with animation the dismiss first and then replace ?
           // Also the API would be way cleaner
+          //
+          // Here we use navigation.getState().routes.length > 1 to check if the modal stack has screens to dismiss
+          // before dismissing, to not dismiss the modal stack itself
           if (navigation.getState().routes.length > 1) {
             router.dismissAll();
           }
