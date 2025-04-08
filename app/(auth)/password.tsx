@@ -1,7 +1,9 @@
-import { router } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
 import { View, Text, Button } from 'react-native';
 
 export default () => {
+  const navigation = useNavigation();
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Password</Text>
@@ -13,7 +15,7 @@ export default () => {
           // router.reset('/first_name')
           // To avoid potential conflicts with animation the dismiss first and then replace ?
           // Also the API would be way cleaner
-          if (router.canGoBack()) {
+          if (navigation.getState().routes.length > 1) {
             router.dismissAll();
           }
           router.replace('/first_name');
